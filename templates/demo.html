@@ -1,3 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container-map-weather">
+    <div id="map"></div>
+    <div class="weather">weather info</div>
+</div>
+
+<script>
+    function initMap(){
+        var options = {
+            zoom:8,
+            center:{lat:40.7306,lng:-73.9352}
+        }
+
+        var map=
+        new google.maps.Map(document.getElementById('map'),options);
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAaayph4R38a34YGkr6CFEBlj88clNhc&callback=initMap&v=weekly"defer></script>
 {% endblock %}
