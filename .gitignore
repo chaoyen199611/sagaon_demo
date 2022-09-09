@@ -6,3 +6,5 @@ package-lock.json
 commitlint.config.js
 
 venv/
+
+test
