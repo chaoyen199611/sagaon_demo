@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.1...v0.1.2) (2022-09-09)
+
+
+### Features
+
+* website design ([71da824](https://github.com/chaoyen199611/sagaon_demo/commit/71da8241df31ca79622a94dfa6e54e50d9585148))
+
 ### [0.1.1](https://github.com/chaoyen199611/sagaon_demo/compare/v0.0.4...v0.1.1) (2022-09-09)
 
 ### [0.0.4](https://github.com/chaoyen199611/sagaon_demo/compare/v0.0.3...v0.0.4) (2022-09-09)
