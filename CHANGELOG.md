@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/chaoyen199611/sagaon_demo/compare/v0.0.3...v0.0.4) (2022-09-09)
+
+
+### Features
+
+* add static file ([60b0bda](https://github.com/chaoyen199611/sagaon_demo/commit/60b0bda511478c41d244c520bb7f0f64f661a703))
+
 ### [0.0.3](https://github.com/chaoyen199611/sagaon_demo/compare/v0.0.1...v0.0.3) (2022-09-09)
 
 
