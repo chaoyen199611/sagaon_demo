@@ -1,6 +1,6 @@
 {
   "name": "sagaon_demo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "SAGAON demo website",
   "main": "commitlint.config.js",
   "scripts": {
@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/chaoyen199611/sagaon_demo#readme",
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.0"
   },
