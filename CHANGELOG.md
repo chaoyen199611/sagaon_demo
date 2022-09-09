@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/chaoyen199611/sagaon_demo/compare/v0.0.1...v0.0.3) (2022-09-09)
+
+
+### Features
+
+* set up frontend templates ([f481ced](https://github.com/chaoyen199611/sagaon_demo/commit/f481cedf3e76ea9ad584879ae5daac5463681f5c))
+
+
+### Bug Fixes
+
+* database migrate ([72f8782](https://github.com/chaoyen199611/sagaon_demo/commit/72f8782255c39c03751b7fccef52f9d5b4dac9f6))
+
 ### 0.0.2 (2022-09-09)
 
 
