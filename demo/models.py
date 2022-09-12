@@ -18,3 +18,21 @@ class StationInfo(models.Model):
     class Meta:
         managed = False
         db_table = 'station_info'
+
+class Weather(models.Model):
+    type = models.CharField(max_length=45,blank=False, null=False )
+    temperature = models.IntegerField(blank=True,null=False)
+    dew_point = models.IntegerField(blank=True,null=False)
+    humidity = models.IntegerField(blank=True,null=True)
+    wind_speed = models.IntegerField(blank=True,null=True)
+    wind_gust = models.IntegerField(blank=True,null=True)
+    pressure = models.DecimalField(max_digits= 4, decimal_places=2,blank=True,null=True)
+    precipitation = models.DecimalField(max_digits=2,decimal_places=1,blank=True,null=True)
+    time = models.DateTimeField(primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'weather'
+
+
+    

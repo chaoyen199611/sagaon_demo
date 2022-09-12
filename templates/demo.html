@@ -8,13 +8,14 @@
 <div class="container-map-weather">
     <div id="map"></div>
     <div class="weather">weather info</div>
+    {% for weather in weathers %}
+    {{weather.type}}
+    {% endfor %}
 </div>
 
 
 <script>
-    
     function initMap(){
-        
         var locations=[];
         {% for station in stations %}
             locations.push({name: "{{ station.name }}", latlng: new google.maps.LatLng( {{ station.lat }}, {{ station.lng }}) });
@@ -46,7 +47,7 @@
         }
     }
 </script>
-
+<script src="{% static 'js/map.js' %}"></script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAaayph4R38a34YGkr6CFEBlj88clNhc&callback=initMap&v=weekly"></script>
 
 {% endblock %}
