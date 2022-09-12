@@ -7,15 +7,25 @@
 {% block content %}
 <div class="container-map-weather">
     <div id="map"></div>
-    <div class="weather">weather info</div>
-    {% for weather in weathers %}
-    {{weather.type}}
-    {% endfor %}
+    <div class="weather">
+        <div class="info">
+            <div id="type"></div>
+            <div id="temperature"></div>
+            <div id="dew_point"></div>
+            <div id="humidity"></div>
+            <div id="wind_speed"></div>
+            <div id="wind_gust"></div>
+            <div id="pressure"></div>
+            <div id="precipitation"></div>
+            <div id="time"></div>
+        </div>
+    </div>
 </div>
 
 
 <script>
     function initMap(){
+        
         var locations=[];
         {% for station in stations %}
             locations.push({name: "{{ station.name }}", latlng: new google.maps.LatLng( {{ station.lat }}, {{ station.lng }}) });
@@ -23,7 +33,7 @@
         {% endfor %}
         
         var options = {
-            zoom:12,
+            zoom:11,
             center:{lat:40.7306,lng:-73.9352}
         }
         var myLatLng = { lat: 40.7306, lng: -73.9352 };
@@ -46,8 +56,32 @@
            })(marker, j));
         }
     }
+
+    function initWeather(){
+        {% for weather in weathers %}
+            var type="{{weather.type}}";
+            var temperature="{{weather.temperature}}";
+            var dew_point="{{weather.dew_point}}";
+            var humidity="{{weather.humidity}}";
+            var wind_speed="{{weather.wind_speed}}";
+            var wind_gust="{{weather.wind_gust}}";
+            var pressure="{{weather.pressure}}";
+            var precipitation="{{weather.precipitation}}";
+            var time="{{weather.time}}";
+        {% endfor %}
+        document.getElementById("type").innerHTML = type;
+        document.getElementById("temperature").innerHTML = temperature;
+        document.getElementById("dew_point").innerHTML = dew_point;
+        document.getElementById("humidity").innerHTML = humidity;
+        document.getElementById("wind_speed").innerHTML = wind_speed;
+        document.getElementById("wind_gust").innerHTML = wind_gust;
+        document.getElementById("pressure").innerHTML = pressure;
+        document.getElementById("precipitation").innerHTML = precipitation;
+        document.getElementById("time").innerHTML = time;
+    }
+    initWeather();
 </script>
-<script src="{% static 'js/map.js' %}"></script>
+
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAaayph4R38a34YGkr6CFEBlj88clNhc&callback=initMap&v=weekly"></script>
 
 {% endblock %}
