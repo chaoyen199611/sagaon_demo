@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/chaoyen199611/sagaon_demo/compare/v0.0.2...v0.1.3) (2022-09-12)
+
+
+### Features
+
+* add static file ([60b0bda](https://github.com/chaoyen199611/sagaon_demo/commit/60b0bda511478c41d244c520bb7f0f64f661a703))
+* add weather data ([40829cc](https://github.com/chaoyen199611/sagaon_demo/commit/40829cc237e384b9d4f973473691727fa1d57cc8))
+* config GCP mysql to website ([1a8d434](https://github.com/chaoyen199611/sagaon_demo/commit/1a8d434b06ab7ebe07e8d3515bc976188ece7045))
+* set up frontend templates ([f481ced](https://github.com/chaoyen199611/sagaon_demo/commit/f481cedf3e76ea9ad584879ae5daac5463681f5c))
+* website design ([71da824](https://github.com/chaoyen199611/sagaon_demo/commit/71da8241df31ca79622a94dfa6e54e50d9585148))
+
+
+### Bug Fixes
+
+* database migrate ([72f8782](https://github.com/chaoyen199611/sagaon_demo/commit/72f8782255c39c03751b7fccef52f9d5b4dac9f6))
+* modify databases hostname ([4a9d3ef](https://github.com/chaoyen199611/sagaon_demo/commit/4a9d3ef464b6d475a605921dbffbc28af25ff70b))
+
 ### [0.1.2](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.1...v0.1.2) (2022-09-09)
 
 
