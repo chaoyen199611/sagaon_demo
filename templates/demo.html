@@ -58,28 +58,50 @@
     }
 
     function initWeather(){
+        var wa=[]
         {% for weather in weathers %}
-            var type="{{weather.type}}";
-            var temperature="{{weather.temperature}}";
-            var dew_point="{{weather.dew_point}}";
-            var humidity="{{weather.humidity}}";
-            var wind_speed="{{weather.wind_speed}}";
-            var wind_gust="{{weather.wind_gust}}";
-            var pressure="{{weather.pressure}}";
-            var precipitation="{{weather.precipitation}}";
-            var time="{{weather.time}}";
+            // var type="{{weather.type}}";
+            // var temperature="{{weather.temperature}}";
+            // var dew_point="{{weather.dew_point}}";
+            // var humidity="{{weather.humidity}}";
+            // var wind_speed="{{weather.wind_speed}}";
+            // var wind_gust="{{weather.wind_gust}}";
+            // var pressure="{{weather.pressure}}";
+            // var precipitation="{{weather.precipitation}}";
+            // var time="{{weather.time}}";
+            wa.push({type: "{{ weahter.type }}", temperature: "{{ weather.temperature}}",dew_point:"{{weather.dew_point}}",humidity:"{{weather.humidity}}", \\
+                    wind_speed="{{weather.wind_speed}}",wind_gust="{{weather.wind_gust}}",pressure:"{{weather.pressure}}",precipitation:"{{weather.precipitation}}",\\
+                    time:"{{weather.time}}"});
         {% endfor %}
-        document.getElementById("type").innerHTML = type;
-        document.getElementById("temperature").innerHTML = temperature;
-        document.getElementById("dew_point").innerHTML = dew_point;
-        document.getElementById("humidity").innerHTML = humidity;
-        document.getElementById("wind_speed").innerHTML = wind_speed;
-        document.getElementById("wind_gust").innerHTML = wind_gust;
-        document.getElementById("pressure").innerHTML = pressure;
-        document.getElementById("precipitation").innerHTML = precipitation;
-        document.getElementById("time").innerHTML = time;
+        document.getElementById("type").innerHTML = wa[0].type;
+        document.getElementById("temperature").innerHTML = wa[0].temperature;
+        document.getElementById("dew_point").innerHTML = wa[0].dew_point;
+        document.getElementById("humidity").innerHTML = wa[0].humidity;
+        document.getElementById("wind_speed").innerHTML = wa[0].wind_speed;
+        document.getElementById("wind_gust").innerHTML = wa[0].wind_gust;
+        document.getElementById("pressure").innerHTML = wa[0].pressure;
+        document.getElementById("precipitation").innerHTML = wa[0].precipitation;
+        document.getElementById("time").innerHTML = wa[0].time;
     }
     initWeather();
+    
+
+    var i = 0;                  //  set your counter to 1
+
+    function myLoop() {         //  create a loop function
+    setTimeout(function() {   //  call a 3s setTimeout when the loop is called
+        console.log('hello');   //  your code here
+        i++;                    //  increment the counter
+        if (i < 100) {           //  if the counter < 10, call the loop function
+        myLoop();             //  ..  again which will trigger another 
+        }                       //  ..  setTimeout()
+    }, 10000)
+    }
+    {% for weather in weathers %}
+        myLoop();
+    {% endfor %}
+    
+
 </script>
 
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAaayph4R38a34YGkr6CFEBlj88clNhc&callback=initMap&v=weekly"></script>
