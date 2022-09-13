@@ -8,8 +8,10 @@
 <div class="container-map-weather">
     <div id="map"></div>
     <div class="weather">
+        <div id="weather-clip"></div>
         <div class="info">
             <div id="type"></div>
+            <div id="time"></div>
             <div id="temperature"></div>
             <div id="dew_point"></div>
             <div id="humidity"></div>
@@ -17,8 +19,9 @@
             <div id="wind_gust"></div>
             <div id="pressure"></div>
             <div id="precipitation"></div>
-            <div id="time"></div>
+            
         </div>
+        
     </div>
 </div>
 
@@ -33,7 +36,7 @@
         {% endfor %}
         
         var options = {
-            zoom:11,
+            zoom:12,
             center:{lat:40.7306,lng:-73.9352}
         }
         var myLatLng = { lat: 40.7306, lng: -73.9352 };
@@ -56,9 +59,9 @@
            })(marker, j));
         }
     }
-
+    var wa=[]
     function initWeather(){
-        var wa=[]
+        
         {% for weather in weathers %}
             // var type="{{weather.type}}";
             // var temperature="{{weather.temperature}}";
@@ -69,10 +72,9 @@
             // var pressure="{{weather.pressure}}";
             // var precipitation="{{weather.precipitation}}";
             // var time="{{weather.time}}";
-            wa.push({type: "{{ weahter.type }}", temperature: "{{ weather.temperature}}",dew_point:"{{weather.dew_point}}",humidity:"{{weather.humidity}}", \\
-                    wind_speed="{{weather.wind_speed}}",wind_gust="{{weather.wind_gust}}",pressure:"{{weather.pressure}}",precipitation:"{{weather.precipitation}}",\\
-                    time:"{{weather.time}}"});
+            wa.push({type: "{{ weather.type }}", temperature: "{{ weather.temperature}}",dew_point:"{{weather.dew_point}}",humidity:"{{weather.humidity}}",wind_speed:"{{weather.wind_speed}}",wind_gust:"{{weather.wind_gust}}",pressure:"{{weather.pressure}}",precipitation:"{{weather.precipitation}}",time:"{{weather.time}}"});
         {% endfor %}
+        console.log(type)
         document.getElementById("type").innerHTML = wa[0].type;
         document.getElementById("temperature").innerHTML = wa[0].temperature;
         document.getElementById("dew_point").innerHTML = wa[0].dew_point;
@@ -82,24 +84,42 @@
         document.getElementById("pressure").innerHTML = wa[0].pressure;
         document.getElementById("precipitation").innerHTML = wa[0].precipitation;
         document.getElementById("time").innerHTML = wa[0].time;
+        var div = document.getElementById("weather-clip");
+        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/Fair.mp4' %}" type="video/mp4"></video>';
+        
     }
     initWeather();
     
-
-    var i = 0;                  //  set your counter to 1
+    var i = 1;                  //  set your counter to 1
 
     function myLoop() {         //  create a loop function
     setTimeout(function() {   //  call a 3s setTimeout when the loop is called
-        console.log('hello');   //  your code here
+        document.getElementById("type").innerHTML = wa[i].type;
+        document.getElementById("temperature").innerHTML = wa[i].temperature;
+        document.getElementById("dew_point").innerHTML = wa[i].dew_point;
+        document.getElementById("humidity").innerHTML = wa[i].humidity;
+        document.getElementById("wind_speed").innerHTML = wa[i].wind_speed;
+        document.getElementById("wind_gust").innerHTML = wa[i].wind_gust;
+        document.getElementById("pressure").innerHTML = wa[i].pressure;
+        document.getElementById("precipitation").innerHTML = wa[i].precipitation;
+        document.getElementById("time").innerHTML = wa[i].time;
+        var div = document.getElementById("weather-clip");
+        if(wa[i].type=='Fair')
+            div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/Fair.mp4' %}" type="video/mp4"></video>'; 
+        else if(wa[i].type=='MostlyCloudy')
+        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/mostlycloudy.mp4' %}" type="video/mp4"></video>'; 
+        else if(wa[i].type=='PartlyCloudy')
+        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/partlycloudy.mp4' %}" type="video/mp4"></video>';
+        else if(wa[i].type=='Cloudy')
+        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/cloudy.mp4' %}" type="video/mp4"></video>';  
+        //console.log(wa[i].type);   //  your code here
         i++;                    //  increment the counter
-        if (i < 100) {           //  if the counter < 10, call the loop function
+        if (i < 480) {           //  if the counter < 10, call the loop function
         myLoop();             //  ..  again which will trigger another 
         }                       //  ..  setTimeout()
-    }, 10000)
-    }
-    {% for weather in weathers %}
-        myLoop();
-    {% endfor %}
+    }, 3000)}
+    
+    myLoop();
     
 
 </script>
