@@ -10,7 +10,7 @@
     <div class="weather">
         <div id="weather-clip"></div>
         <div class="info">
-            <div id="type"></div>
+            <div id="type">weather type</div>
             <div id="time"></div>
             <div id="temperature"></div>
             <div id="dew_point"></div>
@@ -112,11 +112,10 @@
         div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/partlycloudy.mp4' %}" type="video/mp4"></video>';
         else if(wa[i].type=='Cloudy')
         div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/cloudy.mp4' %}" type="video/mp4"></video>';  
-        //console.log(wa[i].type);   //  your code here
         i++;                    //  increment the counter
-        if (i < 480) {           //  if the counter < 10, call the loop function
-        myLoop();             //  ..  again which will trigger another 
-        }                       //  ..  setTimeout()
+        if (i < 480) {           //  if the counter < 10, call
+        myLoop();         
+        }                   
     }, 3000)}
     
     myLoop();
