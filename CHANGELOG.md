@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.2...v0.1.4) (2022-09-21)
+
+
+### Features
+
+* add javascirpt loop ([d9b4f21](https://github.com/chaoyen199611/sagaon_demo/commit/d9b4f213125b700b1f10b657f5a5a2584307b5ca))
+* add weather clips ([41bb225](https://github.com/chaoyen199611/sagaon_demo/commit/41bb225cc9b89a4eaa434af8f505883689689b53))
+* add weather data ([40829cc](https://github.com/chaoyen199611/sagaon_demo/commit/40829cc237e384b9d4f973473691727fa1d57cc8))
+* add weather datbase & show weather info on frontend ([10949a4](https://github.com/chaoyen199611/sagaon_demo/commit/10949a48f5477a0019c9d68d52a361404f6dccf4))
+* config GCP mysql to website ([1a8d434](https://github.com/chaoyen199611/sagaon_demo/commit/1a8d434b06ab7ebe07e8d3515bc976188ece7045))
+* insert trip data & modify weather info box ([f129dfc](https://github.com/chaoyen199611/sagaon_demo/commit/f129dfc76d08f3005a4619152963d580930abb66))
+
+
+### Bug Fixes
+
+* modify databases hostname ([4a9d3ef](https://github.com/chaoyen199611/sagaon_demo/commit/4a9d3ef464b6d475a605921dbffbc28af25ff70b))
+
 ### [0.1.3](https://github.com/chaoyen199611/sagaon_demo/compare/v0.0.2...v0.1.3) (2022-09-12)
 
 
