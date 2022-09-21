@@ -17,6 +17,10 @@
             <div id="storm-clip"></div>
         </div>  
         <div class="info">
+<<<<<<< HEAD
+=======
+            <div id="type">weather type</div>
+>>>>>>> 31c32afdaabe6710b3c128092ef34a8a02784814
             <div id="time"></div>
             <div class="info-box">
                 <div class="title">Type<br>Temperature<br>Dew Point<br>Humidity<br>Wind Speed<br>Wind Gust<br>Pressure<br>Precipitation:
@@ -170,16 +174,20 @@
         else if(wa[i].type=='PartlyCloudy')
             pc.style.display='block';
         else if(wa[i].type=='Cloudy')
+<<<<<<< HEAD
             c.style.display='block';
         else if(wa[i].type=='LightDrizzle'||wa[i].type=='LightRain'||wa[i].type=='Rain')
             rain.style.display="block";
         else
             storm.style.display="block";
         //console.log(wa[i].type);   //  your code here
+=======
+        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/cloudy.mp4' %}" type="video/mp4"></video>';  
+>>>>>>> 31c32afdaabe6710b3c128092ef34a8a02784814
         i++;                    //  increment the counter
-        if (i < 480) {           //  if the counter < 10, call the loop function
-        myLoop();             //  ..  again which will trigger another 
-        }                       //  ..  setTimeout()
+        if (i < 480) {           //  if the counter < 10, call
+        myLoop();         
+        }                   
     }, 3000)}
     
     myLoop();
