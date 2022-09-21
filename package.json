@@ -1,6 +1,6 @@
 {
   "name": "sagaon_demo",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "SAGAON demo website",
   "main": "commitlint.config.js",
   "scripts": {

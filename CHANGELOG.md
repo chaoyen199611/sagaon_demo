@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.4...v0.1.5) (2022-09-21)
+
+
+### Features
+
+* fix clip issue ([286be0b](https://github.com/chaoyen199611/sagaon_demo/commit/286be0ba42ffb2495733772820a1f1457c47a994))
+
 ### [0.1.4](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.2...v0.1.4) (2022-09-21)
 
 
