@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 
 from django.views.generic.base import TemplateView
-from . models import StationInfo,Weather
+from . models import StationInfo,Weather,TripData
 
 class DemoPageView(TemplateView):
 
@@ -12,4 +12,5 @@ class DemoPageView(TemplateView):
         context=super().get_context_data(*args,**kwargs)
         context['stations']=StationInfo.objects.all()
         context['weathers']=Weather.objects.all()
+        context['tripdatas']=TripData.objects.all()
         return context

@@ -22,6 +22,7 @@ body {
     color: white;
     font-size: 30px;
     position: relative;
+    border-radius: 25px;
 }
 
 .container-map-weather{
@@ -29,12 +30,14 @@ body {
     grid-template-columns: 2fr 1fr;
     gap: 30px;
 }
-#weather-clip {
+#pc-clip,#fair-clip,#mc-clip,#c-clip,#r-clip,#storm-clip {
     position: relative;
     width: 100%;
+    border-bottom: 1px solid transparent;
+    border-radius: 25px;
   }
 
-#weather-clip::after{
+  #pc-clip::after,#fair-clip::after,#mc-clip::after,#c-clip::after,#r-clip::after,#storm-clip::after{
     content:"";
     position: absolute;
     width: 100%; 
@@ -45,5 +48,32 @@ body {
     top: 0;
 }
 
+.clip-mask{
+    width: 100%;
+    border-radius: 25px; 
+    overflow: hidden; 
+}
+
+.map-label{
+    color: black;
+    background-color: white;
+    border-style: solid;
+    border-width: thin;
+}
+
+.info-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.title {
+    text-align: left;
+    margin-left: 20%;
+}
+
+#time{
+    margin-bottom: 5%;
+}
 
 

@@ -34,5 +34,16 @@ class Weather(models.Model):
         managed = False
         db_table = 'weather'
 
+class TripData(models.Model):
+    station_id = models.IntegerField()
+    time = models.DateTimeField()
+    true_start = models.FloatField()
+    true_end = models.FloatField()
+    pred_start = models.FloatField()
+    pred_end = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'trip_data'
 
     

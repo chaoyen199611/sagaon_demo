@@ -8,74 +8,127 @@
 <div class="container-map-weather">
     <div id="map"></div>
     <div class="weather">
-        <div id="weather-clip"></div>
+        <div class ="clip-mask">
+            <div id="fair-clip"></div>
+            <div id="pc-clip"></div>
+            <div id="mc-clip"></div>
+            <div id="c-clip"></div>
+            <div id="r-clip"></div>
+            <div id="storm-clip"></div>
+        </div>  
         <div class="info">
-            <div id="type"></div>
             <div id="time"></div>
-            <div id="temperature"></div>
-            <div id="dew_point"></div>
-            <div id="humidity"></div>
-            <div id="wind_speed"></div>
-            <div id="wind_gust"></div>
-            <div id="pressure"></div>
-            <div id="precipitation"></div>
-            
-        </div>
-        
+            <div class="info-box">
+                <div class="title">Type<br>Temperature<br>Dew Point<br>Humidity<br>Wind Speed<br>Wind Gust<br>Pressure<br>Precipitation:
+                </div>
+                <div class="data">
+                    <div id="type"></div>      
+                    <div id="temperature"></div>
+                    <div id="dew_point"></div>
+                    <div id="humidity"></div>
+                    <div id="wind_speed"></div>
+                    <div id="wind_gust"></div>
+                    <div id="pressure"></div>
+                    <div id="precipitation"></div>
+                </div>
+            </div>       
+        </div> 
     </div>
 </div>
 
 
 <script>
     function initMap(){
-        
+        var trips=[]
         var locations=[];
         {% for station in stations %}
             locations.push({name: "{{ station.name }}", latlng: new google.maps.LatLng( {{ station.lat }}, {{ station.lng }}) });
             //var uluru = { lat: {{ station.lat }}, lng: {{ station.lng }} };
         {% endfor %}
+        {% for i in tripdatas %}
+            trips.push({time: "{{ i.time }}", true_start:"{{i.true_start}}",true_end:"{{i.true_end}}",pred_start:"{{i.pred_start}}",pred_end:"{{i.pred_end}}"});
+        {% endfor %}
         
         var options = {
-            zoom:12,
-            center:{lat:40.7306,lng:-73.9352}
+            zoom:14,
+            center:{lat:40.7306,lng:-74}
         }
-        var myLatLng = { lat: 40.7306, lng: -73.9352 };
+
         const map=new google.maps.Map(document.getElementById('map'),options);
         var marker;
+        const image = {
+            url:"{% static 'img/safe.gif '%}",
+            scaledSize: new google.maps.Size(50,50),
+            labelOrigin: new google.maps.Point(25, 0),
+        };
+
         for(var j=0; j<locations.length; j++){
             marker=new google.maps.Marker({
                 position:locations[j].latlng,
                 map,
                 title:locations[j].name,
+                icon : image,
+                label: {color: '#000', 
+                        fontSize: '12px', 
+                        fontWeight: '600',
+                        text: trips[j].pred_start+"/"+trips[j].true_start,
+                        className: "map-label"
+                }
             })
+            const contentString=
+                '<div id="content">' +
+                '<h1 id="firstHeading" class="firstHeading">'+locations[j].name+'</h1>' +
+                '<div id="bodyContent">' +
+                '<p>station latlng:'+locations[j].latlng+'</p>'+
+                '<p>station pred_start:'+trips[j].pred_start+'</p>'+
+                '<p>station true_start:'+trips[j].true_start+'</p>'+
+                '<p>station pred_end:'+trips[j].pred_end+'</p>'+
+                '<p>station true_end:'+trips[j].true_end+'</p>'+
+                "</div>" +
+                "</div>";
+
             var infowindow = new google.maps.InfoWindow({
-                content: locations[j].name,
+                content: contentString,
             });
             google.maps.event.addListener(marker, 'click', (function(marker, j) {
                 return function() {
-                    infowindow.setContent(locations[j].name);
+                    infowindow.setContent(contentString);
                     infowindow.open(map, marker);
                 }
            })(marker, j));
         }
     }
     var wa=[]
+    var fair = document.getElementById("fair-clip"); 
+    var mc = document.getElementById("mc-clip");
+    var pc = document.getElementById("pc-clip");
+    var c = document.getElementById("c-clip");
+    var rain = document.getElementById("r-clip");
+    var storm = document.getElementById("storm-clip");
+    
+    fair.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/Fair.mp4' %}" type="video/mp4"></video>';
+    mc.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/mostlycloudy.mp4' %}" type="video/mp4"></video>';
+    pc.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/partlycloudy.mp4' %}" type="video/mp4"></video>';
+    c.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/cloudy.mp4' %}" type="video/mp4"></video>';
+    rain.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/lightrain.mp4' %}" type="video/mp4"></video>';
+    storm.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/storm.mp4' %}" type="video/mp4"></video>';
+    
+    fair.style.display="none";
+    mc.style.display="none";
+    pc.style.display="none";
+    c.style.display="none";
+    rain.style.display="none";
+    storm.style.display="none";
+
     function initWeather(){
         
         {% for weather in weathers %}
-            // var type="{{weather.type}}";
-            // var temperature="{{weather.temperature}}";
-            // var dew_point="{{weather.dew_point}}";
-            // var humidity="{{weather.humidity}}";
-            // var wind_speed="{{weather.wind_speed}}";
-            // var wind_gust="{{weather.wind_gust}}";
-            // var pressure="{{weather.pressure}}";
-            // var precipitation="{{weather.precipitation}}";
-            // var time="{{weather.time}}";
             wa.push({type: "{{ weather.type }}", temperature: "{{ weather.temperature}}",dew_point:"{{weather.dew_point}}",humidity:"{{weather.humidity}}",wind_speed:"{{weather.wind_speed}}",wind_gust:"{{weather.wind_gust}}",pressure:"{{weather.pressure}}",precipitation:"{{weather.precipitation}}",time:"{{weather.time}}"});
         {% endfor %}
-        console.log(type)
-        document.getElementById("type").innerHTML = wa[0].type;
+
+        
+
+        document.getElementById("type").innerHTML=wa[0].type;
         document.getElementById("temperature").innerHTML = wa[0].temperature;
         document.getElementById("dew_point").innerHTML = wa[0].dew_point;
         document.getElementById("humidity").innerHTML = wa[0].humidity;
@@ -84,15 +137,15 @@
         document.getElementById("pressure").innerHTML = wa[0].pressure;
         document.getElementById("precipitation").innerHTML = wa[0].precipitation;
         document.getElementById("time").innerHTML = wa[0].time;
-        var div = document.getElementById("weather-clip");
-        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/Fair.mp4' %}" type="video/mp4"></video>';
+        
+        fair.style.display='block';
         
     }
     initWeather();
     
     var i = 1;                  //  set your counter to 1
 
-    function myLoop() {         //  create a loop function
+    function myLoop(){         //  create a loop function
     setTimeout(function() {   //  call a 3s setTimeout when the loop is called
         document.getElementById("type").innerHTML = wa[i].type;
         document.getElementById("temperature").innerHTML = wa[i].temperature;
@@ -103,15 +156,25 @@
         document.getElementById("pressure").innerHTML = wa[i].pressure;
         document.getElementById("precipitation").innerHTML = wa[i].precipitation;
         document.getElementById("time").innerHTML = wa[i].time;
-        var div = document.getElementById("weather-clip");
+
+        fair.style.display="none";
+        mc.style.display="none";
+        pc.style.display="none";
+        c.style.display="none";
+        rain.style.display="none";
+        storm.style.display="none";
         if(wa[i].type=='Fair')
-            div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/Fair.mp4' %}" type="video/mp4"></video>'; 
+            fair.style.display='block';
         else if(wa[i].type=='MostlyCloudy')
-        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/mostlycloudy.mp4' %}" type="video/mp4"></video>'; 
+            mc.style.display='block';
         else if(wa[i].type=='PartlyCloudy')
-        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/partlycloudy.mp4' %}" type="video/mp4"></video>';
+            pc.style.display='block';
         else if(wa[i].type=='Cloudy')
-        div.innerHTML = '<video width="100%"  autoplay muted loop><source src="{% static 'clips/cloudy.mp4' %}" type="video/mp4"></video>';  
+            c.style.display='block';
+        else if(wa[i].type=='LightDrizzle'||wa[i].type=='LightRain'||wa[i].type=='Rain')
+            rain.style.display="block";
+        else
+            storm.style.display="block";
         //console.log(wa[i].type);   //  your code here
         i++;                    //  increment the counter
         if (i < 480) {           //  if the counter < 10, call the loop function
