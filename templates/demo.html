@@ -36,11 +36,12 @@
     </div>
 </div>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     function initMap(){
         var trips=[]
         var locations=[];
+
         {% for station in stations %}
             locations.push({name: "{{ station.name }}", latlng: new google.maps.LatLng( {{ station.lat }}, {{ station.lng }}) });
             //var uluru = { lat: {{ station.lat }}, lng: {{ station.lng }} };
@@ -175,6 +176,18 @@
             rain.style.display="block";
         else
             storm.style.display="block";
+
+        /*$.ajax({
+            type:"GET",
+            url:"{% url 'demo' %}",
+            data : {
+                "key1": 123
+            },
+            dataType: 'json',
+            success:function(data){
+                console.log("pulling");
+            }
+            });*/
         //console.log(wa[i].type);   //  your code here
         i++;                    //  increment the counter
         if (i < 480) {           //  if the counter < 10, call
