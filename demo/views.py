@@ -12,7 +12,8 @@ class DemoPageView(TemplateView):
         context=super().get_context_data(*args,**kwargs)
         
         context['weathers']=Weather.objects.all()
-        context['tripdatas']=TripData.objects.all().filter(time='2020-08-20 01:30:00').order_by('station_id')
+        context['tripdatas']=TripData.objects.raw('select * from trip_data order by row_number() over (partition by station_id order by `id`), station_id;')
+        #context['tripdatas']=TripData.objects.all().filter(time='2020-08-20 01:30:00').order_by('station_id')
         context['stations']=StationInfo.objects.all()
 
         # date=self.request.GET.get('key1')
