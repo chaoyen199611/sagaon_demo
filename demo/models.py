@@ -36,7 +36,7 @@ class Weather(models.Model):
 
 class TripData(models.Model):
     station_id = models.IntegerField()
-    time = models.DateTimeField()
+    time = models.DateTimeField(blank=True)
     true_start = models.FloatField()
     true_end = models.FloatField()
     pred_start = models.FloatField()
