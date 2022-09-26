@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.5...v0.1.6) (2022-09-26)
+
+
+### Features
+
+* add contact template ([bbc020a](https://github.com/chaoyen199611/sagaon_demo/commit/bbc020a2f0d06b9bf08e6785126badb412febafb))
+* add new feature to demo page ([cded82d](https://github.com/chaoyen199611/sagaon_demo/commit/cded82d89fb55cf39f391aca95af3e3598a0ca90))
+
 ### [0.1.5](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.4...v0.1.5) (2022-09-21)
 
 
