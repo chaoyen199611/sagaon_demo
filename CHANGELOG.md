@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.3...v0.1.7) (2022-09-27)
+
+
+### Features
+
+* add contact template ([bbc020a](https://github.com/chaoyen199611/sagaon_demo/commit/bbc020a2f0d06b9bf08e6785126badb412febafb))
+* add javascirpt loop ([d9b4f21](https://github.com/chaoyen199611/sagaon_demo/commit/d9b4f213125b700b1f10b657f5a5a2584307b5ca))
+* add new feature to demo page ([cded82d](https://github.com/chaoyen199611/sagaon_demo/commit/cded82d89fb55cf39f391aca95af3e3598a0ca90))
+* add weather clips ([41bb225](https://github.com/chaoyen199611/sagaon_demo/commit/41bb225cc9b89a4eaa434af8f505883689689b53))
+* add weather datbase & show weather info on frontend ([10949a4](https://github.com/chaoyen199611/sagaon_demo/commit/10949a48f5477a0019c9d68d52a361404f6dccf4))
+* fix clip issue ([286be0b](https://github.com/chaoyen199611/sagaon_demo/commit/286be0ba42ffb2495733772820a1f1457c47a994))
+* insert trip data & modify weather info box ([f129dfc](https://github.com/chaoyen199611/sagaon_demo/commit/f129dfc76d08f3005a4619152963d580930abb66))
+
+
+### Bug Fixes
+
+* improve interface ui padding ([dddff37](https://github.com/chaoyen199611/sagaon_demo/commit/dddff3756fab6ca4ae482a7c48158f2ddb2d8bed))
+
 ### [0.1.6](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.5...v0.1.6) (2022-09-26)
 
 
