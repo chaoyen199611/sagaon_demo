@@ -8,7 +8,7 @@
 body{
     background-color: black;
 }
-nav{
+.bar-nav{
     height: 10vh;
     width: 100vw;
     min-width: 600px;
@@ -17,8 +17,10 @@ nav{
     justify-content: center;
     margin: auto;
     background-color: black;
+    top: 0;
+    
 }
-a{
+.bar-nav > a{
     position: relative;
     text-decoration: none;
     font-family: 'Poppins',sans-serif;
@@ -27,7 +29,7 @@ a{
     letter-spacing: 0.5px;
     padding: 0 50px;
 }
-a:after{
+.bar-nav > a:after{
     content: "";
     position: absolute;
     background-color: #ff3c78;
@@ -37,10 +39,10 @@ a:after{
     bottom: -10px;
     transition: 0.3s;
 }
-a:hover{
+.bar-nav > a:hover{
     color: #ffffff;
 }
-a:hover:after{
+.bar-nav > a:hover:after{
     width: 100%;
 }
 
