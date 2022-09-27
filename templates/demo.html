@@ -47,7 +47,7 @@
 <script>
     var markers=[]
     var locations=[];
-    
+    var infowindows=[];
     function accuracy(ts,te,ps,pe){
         return (Math.abs(ts-ps)+Math.abs(te-pe))/(ts+te);
     }
@@ -193,12 +193,14 @@
             var infowindow = new google.maps.InfoWindow({
                 content: contentString,
             });
+            infowindows.push(infowindow);
             google.maps.event.addListener(marker, 'click', (function(marker, j) {
                 return function() {
                     infowindow.setContent(contentString);
                     infowindow.open(map, marker);
                 }
            })(marker, j));
+           
            markers.push(marker);
         }
     }
@@ -338,7 +340,20 @@
                     
                     newtrips.push({curtime: cut, true_start:item.fields.true_start,true_end:item.fields.true_end,pred_start:ps,pred_end:item.fields.pred_end,id:item.fields.station_id});
                 });
-                for(var k=0; k<markers.length; k++)   {   
+
+
+                for(var k=0; k<markers.length; k++)   {  
+                    const contentString=
+                    '<div id="content">' +
+                    '<h1 id="firstHeading" class="firstHeading">'+locations[k].name+'</h1>' +
+                    '<div id="bodyContent">' +
+                    '<p>station latlng:'+locations[k].latlng+'</p>'+
+                    '<p>station pred_start:'+newtrips[k].pred_start+'</p>'+
+                    '<p>station true_start:'+newtrips[k].true_start+'</p>'+
+                    '<p>station pred_end:'+newtrips[k].pred_end+'</p>'+
+                    '<p>station true_end:'+newtrips[k].true_end+'</p>'+
+                    "</div>" +
+                    "</div>"; 
                     var customLabel = {color: '#000', 
                         fontSize: '12px', 
                         fontWeight: '600',
@@ -353,6 +368,7 @@
                     else
                         markers[k].setIcon(medium);
                     markers[k].setLabel(customLabel)
+                    infowindows[k].setContent(contentString);
                 }
             },
             failure: function(err) {console.log("Error");}
