@@ -8,3 +8,9 @@ commitlint.config.js
 venv/
 
 test
+
+.vscode/
+
+db.sqlite3
+
+package.json
