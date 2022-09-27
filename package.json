@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "npx standard-version",
     "prepare": "husky install",
-    "start": "serve -s build"
+    "start": "nod index.js"
   },
   "repository": {
     "type": "git",
