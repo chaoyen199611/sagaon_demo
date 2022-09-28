@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.7...v0.1.8) (2022-09-28)
+
+
+### Features
+
+* add about page content ([94eea54](https://github.com/chaoyen199611/sagaon_demo/commit/94eea5449830e5c72cd11ca9339397dfcd6047f4))
+* redownload node packages ([59a0b51](https://github.com/chaoyen199611/sagaon_demo/commit/59a0b514645452dfc78e74c5d40e246fff85f7a9))
+
+
+### Bug Fixes
+
+* fix allow host typoe\ ([78fa5d9](https://github.com/chaoyen199611/sagaon_demo/commit/78fa5d94eaa0cc8ac286812378bde3342ae71b49))
+* modify procfile ([64ff06f](https://github.com/chaoyen199611/sagaon_demo/commit/64ff06f26b9eab23c9133381658161cc834d61f9))
+* modify script start in package.json ([106909d](https://github.com/chaoyen199611/sagaon_demo/commit/106909d694032c60cd0103d153ffb017a4c42b16))
+
 ### [0.1.7](https://github.com/chaoyen199611/sagaon_demo/compare/v0.1.3...v0.1.7) (2022-09-27)
 
 
