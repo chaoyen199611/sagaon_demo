@@ -172,7 +172,7 @@
                         className: "map-label"
                 }
             })
-            if(accuracy(trips[j].true_start,trips[j].true_end,trips[j].pred_start,trips[j].pred_end)>0.1)
+            if(accuracy(trips[j].true_start,trips[j].true_end,trips[j].pred_start,trips[j].pred_end)>0.2)
                 marker.setIcon(unsafe);
             else if(accuracy(trips[j].true_start,trips[j].true_end,trips[j].pred_start,trips[j].pred_end)<0.06)
                 marker.setIcon(safe);

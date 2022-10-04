@@ -13,7 +13,7 @@ main > nav {
 
 /* 3. ScrollSpy active styles (see JS tab for activation) */
 .section-nav li.active > a {
-	color: #333;
+	color: #ccc;
 	font-weight: 500;
 }
 
@@ -80,7 +80,7 @@ main {
     margin-top: 5%;
 }
 
-#dataset,#motivation,#model,#intro{
+#dataset,#motivation,#model,#intro,#model-nas{
     margin-top: 2%;
     margin-bottom: 2%;
 }
