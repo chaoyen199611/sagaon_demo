@@ -7,36 +7,61 @@
 
 {% block content %}
 <main>
-    <div class="article">
-        <h1>{{ article.title }}</h1>
-        <div id="intro">
-            <p>{{ article.intro }}</p>
-        </div>
-        <section id="motivation">
-            <h2>Motivation</h2>
-            <p>{{ article.motivation }}</p>
-        </section>
-        <section class="model_container" id="model">
-            <h2>Model</h2>
-            <p>{{ article.model }}</p>
-            <section id="model-nas">
-                <h3>Neural Architecture Search</h3>
-                <p>{{ article.nas }}</p>
+    <div class="container">
+        <div class="article">
+            <h1>{{ article.title }}</h1>
+            <section id="intro">
+                <p>{{ article.intro }}</p>
             </section>
-            <section id="model-asaga">
-                <h3>Algorithm</h3>
-                <p>{{ article.algorithm }}</p>
+            <section id="motivation">
+                <h2>Motivation</h2>
+                <p>{{ article.motivation }}</p>
             </section>
-            <section id="model-architecture">
-                <h3>Architecture</h3>
-                <p>{{ article.architecture }}</p>
+            <section class="model_container" id="model">
+                <h2>Model</h2>
+                <p>{{ article.model }}</p>
+                <section id="model--nas">
+                    <h3>Neural Architecture Search</h3>
+                    <p>{{ article.nas }}</p>
+                </section>
+                <section id="model--asaga">
+                    <h3>Algorithm</h3>
+                    <p>{{ article.algorithm }}</p>
+                    <div id="algorithm-image">
+                        <center><img src="{% static 'img/alg.png' %}"></center>
+                    </div>
+                </section>
+                <section id="model--architecture">
+                    <h3>Architecture</h3>
+                    <p>{{ article.architecture }}</p>
+                    <div id="sagaon-flow-image">
+                        <img src="{% static 'img/SAGAN_flow.png' %}">
+                    </div>
+                    
+                </section>
             </section>
-        </section>
-        <section id="dataset">
-            <h2>Dataset</h2>
-            <p>{{ article.dataset }}</p>
-        </section>
+            <section id="dataset">
+                <h2>Dataset</h2>
+                <p>{{ article.dataset }}</p>
+            </section>
+            <section id="result">
+                <h2>Experiment & Result</h2>
+                <p>{{ article.experiment }}</p>
+                <div id="banner" style="display: block;">
+                    <div class="inline-block">
+                        <img src="{% static 'img/rmse.png' %}">
+                    </div>
+                    <div class="inline-block">
+                        <img src="{% static 'img/rmse.png' %}">
+                    </div>
+                </div>
 
+            </section>
+            <section id="demo">
+                <h2>Demo explanation</h2>
+                <p>{{ article.demo }}</p>
+            </section>
+        </div>
     </div>
     <nav class="section-nav">
         <ol>
@@ -44,15 +69,19 @@
             <li><a href="#motivation">Motivation</a></li>
             <li><a href="#model">Model</a>
                 <ul>
-                    <li class=""><a href="#model-nas">Neural Architecture Search</a></li>
-                    <li class=""><a href="#model-asaga">Algorithm</a></li>
-                    <li class=""><a href='#model-architecture'>Architecture</a></li>
+                    <li class=""><a href="#model--nas">Neural Architecture Search</a></li>
+                    <li class=""><a href="#model--asaga">Algorithm</a></li>
+                    <li class=""><a href='#model--architecture'>Architecture</a></li>
                 </ul>
             </li>
             <li><a href="#dataset">Dataset</a></li>
+            <li><a href="#result">Experiment & Result</a></li>
+            <li><a href="#demo">Demo explanation</a></li>
         </ol>
     </nav>
 </main>
 {% endblock %}
 
-{% block js %}<script src="{% static 'js/about.js' %}">{% endblock %}
+{% block js %}
+    <script src="{% static 'js/about.js' %}"></script>
+{% endblock %}

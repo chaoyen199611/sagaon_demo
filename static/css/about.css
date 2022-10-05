@@ -9,11 +9,12 @@ main > nav {
 	top: 10%;
 	left: 10%;
 	align-self: start;
+	z-index: 0;
 }
 
 /* 3. ScrollSpy active styles (see JS tab for activation) */
 .section-nav li.active > a {
-	color: #ccc;
+	color: white;
 	font-weight: 500;
 }
 
@@ -63,7 +64,9 @@ li {
 
 h1 {
 	font-weight: 300;
-	margin-bottom: 5%;
+}
+h2,h3 {
+	margin-bottom: 2%;
 }
 
 /** page layout **/
@@ -76,11 +79,16 @@ main {
 }
 
 .article{
-
+	width: 40vw;
     margin-top: 5%;
+	margin-left: auto;
 }
 
-#dataset,#motivation,#intro{
+p {
+	line-height: 1.5;
+}
+
+#dataset,#motivation,#intro,#result,#demo{
     margin-top: 2%;
     margin-bottom: 2%;
 }
@@ -89,9 +97,46 @@ main {
     margin-bottom: 2%;
 }
 
-#model-nas,#model-asaga,#model_architecture{
+#model--nas,#model--asaga,#model--architecture{
 	margin-top: 2%;
 	margin-left: 2%;
+	margin-bottom: 2%;
 }
+#sagaon-flow-image img{
+	width: 100%;
+}
+
+.inline-block img{
+	width: 100%;
+}
+img {
+	border-radius: 5px;
+	transition:transform 0.25s ease;
+	z-index: 100;
+}
+
+#sagaon-flow-image img:hover {
+    -webkit-transform:scale(1.5);
+    transform:scale(2);
+}
+
+.inline-block img:hover {
+    -webkit-transform:scale(1.5);
+    transform:scale(2);
+}
+
+.inline-block{
+	display: inline-block;
+	max-width: 49%;
+}
+
+#algorithm-image img{
+	width: 60%;
+}
+
+
+
+
+
 
 

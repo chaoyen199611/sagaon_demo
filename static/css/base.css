@@ -10,15 +10,12 @@ body{
 }
 .bar-nav{
     height: 10vh;
-    width: 100vw;
     min-width: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
     background-color: black;
-    top: 0;
-    
 }
 .bar-nav > a{
     position: relative;

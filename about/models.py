@@ -12,3 +12,4 @@ class Article(models.Model):
     architecture = models.TextField(blank=True)
     dataset = models.TextField(blank=True)
     experiment = models.TextField(blank=True)
+    demo = models.TextField(blank=True)

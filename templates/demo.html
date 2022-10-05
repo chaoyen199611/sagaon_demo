@@ -178,7 +178,7 @@
                 marker.setIcon(safe);
             else
                 marker.setIcon(medium);
-            const contentString=
+            var contentString=
                 '<div id="content">' +
                 '<h1 id="firstHeading" class="firstHeading">'+locations[j].name+'</h1>' +
                 '<div id="bodyContent">' +
@@ -341,9 +341,9 @@
                     newtrips.push({curtime: cut, true_start:item.fields.true_start,true_end:item.fields.true_end,pred_start:ps,pred_end:item.fields.pred_end,id:item.fields.station_id});
                 });
 
-
                 for(var k=0; k<markers.length; k++)   {  
-                    const contentString=
+                    
+                    var contentString=
                     '<div id="content">' +
                     '<h1 id="firstHeading" class="firstHeading">'+locations[k].name+'</h1>' +
                     '<div id="bodyContent">' +
