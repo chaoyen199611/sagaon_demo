@@ -17,7 +17,7 @@ main {
 .card-list {
     width                : 70%;
     display              : grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     grid-gap             : 4em;
     align-items    : center;
 }
@@ -40,8 +40,8 @@ main {
 }
 
 .card:hover {
-    transform : scale(1.05);
-    box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.2);
+    transform : scale(1.2);
+    box-shadow: 4px 4px 25px #1F51FF;
 }
 
 .card-image {
@@ -57,9 +57,7 @@ main {
     background-size: cover;
 }
 
-.card-body {
-    padding: 20px 28px;
-}
+
 
 .card-body .date {
     font-weight: bolder;
