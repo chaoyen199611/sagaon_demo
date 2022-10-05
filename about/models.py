@@ -1,3 +1,4 @@
+from platform import architecture
 from django.db import models
 
 # Create your models here.
@@ -8,5 +9,6 @@ class Article(models.Model):
     model = models.TextField(blank=True)
     nas = models.TextField(blank=True)
     algorithm = models.TextField(blank=True)
+    architecture = models.TextField(blank=True)
     dataset = models.TextField(blank=True)
     experiment = models.TextField(blank=True)
