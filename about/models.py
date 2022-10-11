@@ -13,3 +13,4 @@ class Article(models.Model):
     dataset = models.TextField(blank=True)
     experiment = models.TextField(blank=True)
     demo = models.TextField(blank=True)
+    future = models.TextField(blank=True)

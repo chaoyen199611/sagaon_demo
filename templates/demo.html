@@ -193,14 +193,14 @@
             var infowindow = new google.maps.InfoWindow({
                 content: contentString,
             });
-            infowindows.push(infowindow);
+            
             google.maps.event.addListener(marker, 'click', (function(marker, j) {
                 return function() {
                     infowindow.setContent(contentString);
                     infowindow.open(map, marker);
                 }
            })(marker, j));
-           
+           infowindows.push(infowindow);
            markers.push(marker);
         }
     }
@@ -354,6 +354,7 @@
                     '<p>station true_end:'+newtrips[k].true_end+'</p>'+
                     "</div>" +
                     "</div>"; 
+
                     var customLabel = {color: '#000', 
                         fontSize: '12px', 
                         fontWeight: '600',
@@ -367,8 +368,10 @@
                         markers[k].setIcon(safe);
                     else
                         markers[k].setIcon(medium);
-                    markers[k].setLabel(customLabel)
+                    markers[k].setLabel(customLabel);
                     infowindows[k].setContent(contentString);
+                    
+                    
                 }
             },
             failure: function(err) {console.log("Error");}

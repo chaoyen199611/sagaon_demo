@@ -133,7 +133,21 @@ img {
 #algorithm-image img{
 	width: 60%;
 }
+#dataset a:link {
+	color: red;
+}
 
+#dataset a:visited {
+	color: green;
+}
+
+#dataset a:hover {
+	color: white;
+}
+
+#dataset a:active {
+	color: blue;
+}
 
 
 
