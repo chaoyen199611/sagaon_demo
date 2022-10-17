@@ -14,13 +14,14 @@ class DemoPageView(TemplateView):
         context=super().get_context_data(**kwargs)
         date=self.request.GET.get('time')
         if date==None:
-             date='2020-08-20 01:30:00'
+             date='2020-08-20 02:00:00'
         
         
         if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
             print('yes')
             newtrip=TripData.objects.all().filter(time=str(date)).order_by('station_id')
             trip = serializers.serialize('json',newtrip)
+            print(trip)
             return JsonResponse(trip,safe=False)
         else:
             print(str(date))

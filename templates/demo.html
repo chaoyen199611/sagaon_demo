@@ -243,7 +243,6 @@
         document.getElementById("pressure").innerHTML = wa[0].pressure;
         document.getElementById("precipitation").innerHTML = wa[0].precipitation;
         document.getElementById("time").innerHTML = wa[0].time;
-        addData(myChart,wa[0].temperature);
         fair.style.display='block';
 
         
@@ -261,8 +260,10 @@
       
         return D(mins%(24*60)/60 | 0) + ':' + D(mins%60);  
     } 
-    var hourcount=0;
-    var curTime = new Date("2020-08-20 09:30");
+    var hourcount=2;
+    var curTime = new Date("2020-08-20 10:00");
+    addData(myChart,0);
+    addData(myChart,0);
     function myLoop(){         //  create a loop function
     setTimeout(function() {   //  call a 3s setTimeout when the loop is called
         hourcount++;
