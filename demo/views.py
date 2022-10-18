@@ -18,10 +18,8 @@ class DemoPageView(TemplateView):
         
         
         if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            print('yes')
             newtrip=TripData.objects.all().filter(time=str(date)).order_by('station_id')
             trip = serializers.serialize('json',newtrip)
-            print(trip)
             return JsonResponse(trip,safe=False)
         else:
             print(str(date))

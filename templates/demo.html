@@ -5,8 +5,105 @@
 <link  rel="stylesheet" type="text/css" href="{% static 'css/map.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container-map-weather">
-    <div id="map"></div>
+<div class="container-map-weather" id="myDiv" style="grid-template-columns: 2fr 1fr;">
+    <div class="map-canvas">
+        <div id="map"></div>
+        <button type="button" id="expbtn">info</button>
+    </div>
+    <div id="summary">
+        <div id="curdate"></div>
+        <div class="condition">
+            <img src="{% static 'img/safe.gif' %}">
+            <span id="safe-total"></span>
+            <img src="{% static 'img/medium.gif' %}">
+            <span id="medium-total"></span>
+            <img src="{% static 'img/unsafe.gif' %}">
+            <span id="unsafe-total"></span>
+        </div>
+        <div class="dailybox">
+            <div class="dailycanvas">
+                <canvas id="dailyChart"></canvas>
+            </div>
+        </div>
+        <div class="monthbox">
+            <div class="inaccurate-station">
+                <h4>Top 10 Inaccurate stations</h3>
+                <table>
+                    <tr>
+                        <th>No.</th>
+                        <th>Station name</th>
+                        <th>ID</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th id="one-name"></th>
+                        <th id="one-id"></th>
+                        <th id="one-total"></th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th id="two-name"></th>
+                        <th id="two-id"></th>
+                        <th id="two-total"></th>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <th id="three-name"></th>
+                        <th id="three-id"></th>
+                        <th id="three-total"></th>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <th id="four-name"></th>
+                        <th id="four-id"></th>
+                        <th id="four-total"></th>
+                    </tr>
+                    <tr>
+                        <th>5</th>
+                        <th id="five-name"></th>
+                        <th id="five-id"></th>
+                        <th id="five-total"></th>
+                    </tr>
+                    <tr>
+                        <th>6</th>
+                        <th id="six-name"></th>
+                        <th id="six-id"></th>
+                        <th id="six-total"></th>
+                    </tr>
+                    <tr>
+                        <th>7</th>
+                        <th id="seven-name"></th>
+                        <th id="seven-id"></th>
+                        <th id="seven-total"></th>
+                    </tr>
+                    <tr>
+                        <th>8</th>
+                        <th id="eight-name"></th>
+                        <th id="eight-id"></th>
+                        <th id="eight-total"></th>
+                    </tr>
+                    <tr>
+                        <th>9</th>
+                        <th id="nine-name"></th>
+                        <th id="nine-id"></th>
+                        <th id="nine-total"></th>
+                    </tr>
+                    <tr>
+                        <th>10</th>
+                        <th id="ten-name"></th>
+                        <th id="ten-id"></th>
+                        <th id="ten-total"></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="piebox">
+                <div class="piecanvas">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="weather">
         <div class ="clip-mask">
             <div id="fair-clip"></div>
@@ -51,8 +148,25 @@
     function accuracy(ts,te,ps,pe){
         return (Math.abs(ts-ps)+Math.abs(te-pe))/(ts+te);
     }
-    
-    
+    var button = document.getElementById('expbtn');
+    button.onclick = function(){
+
+        var exp=document.getElementById("myDiv");
+        if(exp.style.gridTemplateColumns !== "2fr 1fr"){
+            exp.style.gridTemplateColumns = "2fr 1fr";
+        }
+        else{
+            exp.style.gridTemplateColumns = "1fr 1fr 1fr";
+
+        }
+        var div = document.getElementById('summary');
+        if (div.style.display !== 'block') {
+            div.style.display = 'block';
+        }
+        else {
+            div.style.display = 'none';
+        }
+    };
 
     const labels = [
         '00',
@@ -91,6 +205,53 @@
         }]
     };
 
+    const dailyData = {
+        labels: labels,
+        datasets: [
+        {
+            label: 'Accurate',
+            backgroundColor: 'rgb(34, 139, 34)',
+            borderColor: 'rgb(34, 139, 34)',
+            data: []
+        },
+        {
+            label: 'Inaccurate',
+            backgroundColor: 'rgb(198, 1, 31)',
+            borderColor: 'rgb(198, 1, 31)',
+            data: []
+        },
+        {
+        label: 'Medium',
+            backgroundColor: 'rgb(115, 194, 251)',
+            borderColor: 'rgb(115, 194, 251)',
+            data: []
+        }
+        ]
+    };
+    const pieData = {
+        labels: [
+          'Fair',
+          'MostlyCloudy',
+          'PartlyCloudy',
+          'Cloudy',
+          'Rain',
+          'Storm'
+        ],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [300, 50, 100,50,10,20],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'rgb(132, 205, 86)',
+            'rgb(24, 75, 86)',
+            'rgb(11, 54, 86)'
+          ],
+          hoverOffset: 4
+        }]
+      };
+
     const config = {
         type: 'line',
         data: data,
@@ -107,12 +268,43 @@
             }
         }
     };
+    const dailyconfig = {
+        type: 'line',
+        data: dailyData,
+        options: {
+            plugins:{
+                legend:{
+                    display:false,
+                    labels:{
+                        font:{
+                            size: 20,
+                            family: "'Poppins',sans-serif"
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    const pieconfig = {
+        type: 'pie',
+        data: pieData,
+      };
+
     Chart.defaults.color = "#ffffff";
     const myChart = new Chart(
         document.getElementById('myChart'),
         config
     );
+    const dailyChart=new Chart(
+        document.getElementById('dailyChart'),
+        dailyconfig
+    );
 
+    const pieChart = new Chart(
+        document.getElementById('pieChart'),
+        pieconfig
+    );
     function addData(chart, data) {
         chart.data.datasets.forEach((dataset) => {
             dataset.data.push(data);
@@ -129,7 +321,7 @@
     
     function initMap(){
         {% for station in stations %}
-            locations.push({name: "{{ station.name }}", latlng: new google.maps.LatLng( {{ station.lat }}, {{ station.lng }}) });
+            locations.push({name: "{{ station.name }}",id:"{{station.station_id}}", latlng: new google.maps.LatLng( {{ station.lat }}, {{ station.lng }}) });
             //var uluru = { lat: {{ station.lat }}, lng: {{ station.lng }} };
         {% endfor %}
         var trips=[];
@@ -250,7 +442,9 @@
     }
     initWeather();
 
-    
+
+
+
     var i = 1;                  //  set your counter to 1
 
     function addMinutes(time, minsToAdd) {
@@ -260,56 +454,47 @@
       
         return D(mins%(24*60)/60 | 0) + ':' + D(mins%60);  
     } 
-    var hourcount=2;
+    var hourcount=1;
     var curTime = new Date("2020-08-20 10:00");
+    var half=false;
+    var safeTotal=0,mediumTotal=0,unsafeTotal=0;
+    
     addData(myChart,0);
     addData(myChart,0);
+    dailyChart.data.datasets[0].data.push(0);
+    dailyChart.data.datasets[0].data.push(0);
+    dailyChart.data.datasets[1].data.push(0);
+    dailyChart.data.datasets[1].data.push(0);
+    dailyChart.data.datasets[2].data.push(0);
+    dailyChart.data.datasets[2].data.push(0);
+    dailyChart.update();
+    var curMedium=0,curSafe=0,curUnsafe=0;
+
+    let stationtotal=[],mask=[];
+    for(var k=0;k<100;k++){
+        stationtotal.push(0);
+        mask.push(false);
+    }
+
     function myLoop(){         //  create a loop function
     setTimeout(function() {   //  call a 3s setTimeout when the loop is called
-        hourcount++;
-        console.log(myChart);
-        if(hourcount>=24){
-            removeData(myChart);
-            addData(myChart,wa[i].temperature);
-            hourcount=0;
+        for(var k=0;k<100;k++){
+            mask[k]=false;
         }
-        else{
-            addData(myChart,wa[i].temperature)
-        }
-        console.log(hourcount);
-        
-        document.getElementById("type").innerHTML = wa[i].type;
-        document.getElementById("temperature").innerHTML = wa[i].temperature;
-        document.getElementById("dew_point").innerHTML = wa[i].dew_point;
-        document.getElementById("humidity").innerHTML = wa[i].humidity;
-        document.getElementById("wind_speed").innerHTML = wa[i].wind_speed;
-        document.getElementById("wind_gust").innerHTML = wa[i].wind_gust;
-        document.getElementById("pressure").innerHTML = wa[i].pressure;
-        document.getElementById("precipitation").innerHTML = wa[i].precipitation;
-        document.getElementById("time").innerHTML = wa[i].time;
-
-        fair.style.display="none";
-        mc.style.display="none";
-        pc.style.display="none";
-        c.style.display="none";
-        rain.style.display="none";
-        storm.style.display="none";
-        if(wa[i].type=='Fair')
-            fair.style.display='block';
-        else if(wa[i].type=='MostlyCloudy')
-            mc.style.display='block';
-        else if(wa[i].type=='PartlyCloudy')
-            pc.style.display='block';
-        else if(wa[i].type=='Cloudy')
-            c.style.display='block';
-        else if(wa[i].type=='LightDrizzle'||wa[i].type=='LightRain'||wa[i].type=='Rain')
-            rain.style.display="block";
-        else
-            storm.style.display="block";
-
+    
         var strDate = curTime.toISOString().slice(0,19).replace('T',' ');
-        var newtrips=[];
+        var curDate=strDate.slice(0,10).replaceAll('-','/');
+        var day=strDate.slice(8,10).replaceAll('-','/');
 
+        if(day=="01"){
+            for(var k=0;k<100;k++){
+                stationtotal[k]=0;
+            }
+        }
+
+        document.getElementById("curdate").innerHTML=curDate;
+        var newtrips=[];
+        
         const unsafe = {
             url:"{% static 'img/unsafe.gif' %}",
             scaledSize: new google.maps.Size(40,40),
@@ -325,7 +510,9 @@
             scaledSize: new google.maps.Size(40,40),
             labelOrigin: new google.maps.Point(20, 0),
         };
+        var curMedium1=0,curSafe1=0,curUnsafe1=0;
         $.ajax({
+            
             type:"GET",
             url:"{% url 'demo' %}",
             data : {
@@ -341,7 +528,7 @@
                     
                     newtrips.push({curtime: cut, true_start:item.fields.true_start,true_end:item.fields.true_end,pred_start:ps,pred_end:item.fields.pred_end,id:item.fields.station_id});
                 });
-
+                
                 for(var k=0; k<markers.length; k++)   {  
                     
                     var contentString=
@@ -360,33 +547,171 @@
                         fontSize: '12px', 
                         fontWeight: '600',
                         text: newtrips[k].pred_start+"/"+newtrips[k].true_start,
-                        //text:"123",
                         className: "map-label"
                     }
-                    if(accuracy(newtrips[k].true_start,newtrips[k].true_end,newtrips[k].pred_start,newtrips[k].pred_end)>0.2)
+                    if(accuracy(newtrips[k].true_start,newtrips[k].true_end,newtrips[k].pred_start,newtrips[k].pred_end)>0.2){
                         markers[k].setIcon(unsafe);
-                    else if(accuracy(newtrips[k].true_start,newtrips[k].true_end,newtrips[k].pred_start,newtrips[k].pred_end)<0.06)
+                        curUnsafe++;
+                        curUnsafe1++;
+                        stationtotal[k]++;
+                    }
+                    else if(accuracy(newtrips[k].true_start,newtrips[k].true_end,newtrips[k].pred_start,newtrips[k].pred_end)<0.06){
                         markers[k].setIcon(safe);
-                    else
+                        curSafe++;
+                        curSafe1++;
+                    }
+                    else{
                         markers[k].setIcon(medium);
+                        curMedium++;
+                        curMedium1++;
+                    }
                     markers[k].setLabel(customLabel);
                     infowindows[k].setContent(contentString);
                     
+                    document.getElementById("time").innerHTML = strDate;
+                }
+                
+                if(hourcount<24){
+                    safeTotal+=curSafe;
+                    unsafeTotal+=curUnsafe;
+                    mediumTotal+=curMedium;
+                    document.getElementById("safe-total").innerHTML = curSafe1;
+                    document.getElementById("unsafe-total").innerHTML = curUnsafe1;
+                    document.getElementById("medium-total").innerHTML = curMedium1;
                     
                 }
+                else{
+                    safeTotal=curSafe1;
+                    mediumTotal=curMedium1;
+                    unsafeTotal=curUnsafe1;
+                    
+                }
+                var max,tmpindex;
+                var stationindex=[];
+                for(var n=0;n<10;n++){
+                    max=0;
+                    for(var k=0;k<100;k++){
+                        if(stationtotal[k]>=max&&mask[k]==false){
+                            tmpindex=k;
+                            max=stationtotal[k];
+                        }
+                    }
+                    stationindex.push(tmpindex);
+                    mask[tmpindex]=true;
+                }
+                document.getElementById("one-name").innerHTML = locations[stationindex[0]].name;
+                document.getElementById("one-id").innerHTML = locations[stationindex[0]].id;
+                document.getElementById("one-total").innerHTML = stationtotal[stationindex[0]];
+
+                document.getElementById("two-name").innerHTML = locations[stationindex[1]].name;
+                document.getElementById("two-id").innerHTML = locations[stationindex[1]].id;
+                document.getElementById("two-total").innerHTML = stationtotal[stationindex[1]];
+
+                document.getElementById("three-name").innerHTML = locations[stationindex[2]].name;
+                document.getElementById("three-id").innerHTML = locations[stationindex[2]].id;
+                document.getElementById("three-total").innerHTML = stationtotal[stationindex[2]];
+
+                document.getElementById("four-name").innerHTML = locations[stationindex[3]].name;
+                document.getElementById("four-id").innerHTML = locations[stationindex[3]].id;
+                document.getElementById("four-total").innerHTML = stationtotal[stationindex[3]];
+
+                document.getElementById("five-name").innerHTML = locations[stationindex[4]].name;
+                document.getElementById("five-id").innerHTML = locations[stationindex[4]].id;
+                document.getElementById("five-total").innerHTML = stationtotal[stationindex[4]];
+
+                document.getElementById("six-name").innerHTML = locations[stationindex[5]].name;
+                document.getElementById("six-id").innerHTML = locations[stationindex[5]].id;
+                document.getElementById("six-total").innerHTML = stationtotal[stationindex[5]];
+
+                document.getElementById("seven-name").innerHTML = locations[stationindex[6]].name;
+                document.getElementById("seven-id").innerHTML = locations[stationindex[6]].id;
+                document.getElementById("seven-total").innerHTML = stationtotal[stationindex[6]];
+
+                document.getElementById("eight-name").innerHTML = locations[stationindex[7]].name;
+                document.getElementById("eight-id").innerHTML = locations[stationindex[7]].id;
+                document.getElementById("eight-total").innerHTML = stationtotal[stationindex[7]];
+
+                document.getElementById("nine-name").innerHTML = locations[stationindex[8]].name;
+                document.getElementById("nine-id").innerHTML = locations[stationindex[8]].id;
+                document.getElementById("nine-total").innerHTML = stationtotal[stationindex[8]];
+
+                document.getElementById("ten-name").innerHTML = locations[stationindex[9]].name;
+                document.getElementById("ten-id").innerHTML = locations[stationindex[9]].id;
+                document.getElementById("ten-total").innerHTML = stationtotal[stationindex[9]];
+
             },
             failure: function(err) {console.log("Error");}
         });
         
+        
+        if(!half){
+            hourcount++; 
+            if(hourcount>=24){
+                for(var n=0;n<24;n++){
+                    dailyChart.data.datasets[0].data.pop();
+                    dailyChart.data.datasets[1].data.pop();
+                    dailyChart.data.datasets[2].data.pop();
+                }
+                
+                dailyChart.data.datasets[0].data.push(curSafe);
+                dailyChart.data.datasets[1].data.push(curUnsafe);
+                dailyChart.data.datasets[2].data.push(curMedium);
+                dailyChart.update();
+                removeData(myChart);
+                addData(myChart,wa[i].temperature);
+                hourcount=0;
+            }
+            else{
+                dailyChart.data.datasets[0].data.push(curSafe);
+                dailyChart.data.datasets[1].data.push(curUnsafe);
+                dailyChart.data.datasets[2].data.push(curMedium);
+                dailyChart.update();
+                addData(myChart,wa[i].temperature)
+            }
+            document.getElementById("type").innerHTML = wa[i].type;
+            document.getElementById("temperature").innerHTML = wa[i].temperature;
+            document.getElementById("dew_point").innerHTML = wa[i].dew_point;
+            document.getElementById("humidity").innerHTML = wa[i].humidity;
+            document.getElementById("wind_speed").innerHTML = wa[i].wind_speed;
+            document.getElementById("wind_gust").innerHTML = wa[i].wind_gust;
+            document.getElementById("pressure").innerHTML = wa[i].pressure;
+            document.getElementById("precipitation").innerHTML = wa[i].precipitation;
+            
+
+            fair.style.display="none";
+            mc.style.display="none";
+            pc.style.display="none";
+            c.style.display="none";
+            rain.style.display="none";
+            storm.style.display="none";
+            if(wa[i].type=='Fair')
+                fair.style.display='block';
+            else if(wa[i].type=='MostlyCloudy')
+                mc.style.display='block';
+            else if(wa[i].type=='PartlyCloudy')
+                pc.style.display='block';
+            else if(wa[i].type=='Cloudy')
+                c.style.display='block';
+            else if(wa[i].type=='LightDrizzle'||wa[i].type=='LightRain'||wa[i].type=='Rain')
+                rain.style.display="block";
+            else
+                storm.style.display="block";
+            curMedium=0;
+            curSafe=0;
+            curUnsafe=0;
+            i++;
+            
+        }
+        
+        
         curTime=new Date(curTime.getTime()+30*60000);
         
-        
-
+        half=!half
 
         delete newtrips; 
-        
+
            //  your code here
-        i++;                    //  increment the counter
+                            //  increment the counter
         if (i < 480) {           //  if the counter < 10, call
         myLoop();         
         }                   
