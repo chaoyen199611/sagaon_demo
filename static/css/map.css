@@ -144,13 +144,15 @@ img{
 
 .inaccurate-station{
     font-size: 0.5vw;
-    margin-top: 25%;
+    margin-top: 15%;
 }
 
 
 .dailybox{
     width: 80%;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .piecanvas{
