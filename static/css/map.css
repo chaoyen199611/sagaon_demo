@@ -7,7 +7,7 @@ body {
 #map{
     margin: 0.5em 0 0.5em 0.5em;
     width: 95%;
-    height: 80vh;
+    height: 85vh;
     
 }
 
@@ -19,7 +19,7 @@ body {
 
 .weather,#summary{
     margin: 0.5em;
-    height: 80vh;
+    height: 85vh;
     background-color: black;  
     /* backdrop-filter: blur(5px); */
     text-align: center;
@@ -33,7 +33,7 @@ body {
 
 button{
     width: 5%; 
-    height: 80vh;
+    height: 85vh;
     margin: 0.5em 0;
     align-items: center;
     background-color: darkblue;
@@ -46,6 +46,7 @@ button{
     background-color: black;
     display: none;
     transition: width 2s;
+    align-items: center;
 }
 
 button:hover {
@@ -97,7 +98,7 @@ button:hover {
 
 .monthbox{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
 }
 
 span{
@@ -113,7 +114,7 @@ img{
     display: inline;
 }
 #curdate{
-    font-size: 30px;
+    font-size: 1vw;
 }
 
 .title {
@@ -123,12 +124,12 @@ img{
 
 #time{
     margin-bottom: 2%;
-    font-size: 30px;
+    font-size: 1vw;
 }
 
 .chartbox{
     position: relative;
-    bottom: 15%;
+    bottom: 20%;
 }
 .chartcanvas{
     transform: scale(0.9);
@@ -136,12 +137,26 @@ img{
 
 .info{
     position: relative;
-    bottom: 15%;
+    bottom: 20%;
     color: white;
     z-index: 101;
 }
 
 .inaccurate-station{
-    font-size: 15px;
-    margin-top: 20%;
+    font-size: 0.5vw;
+    margin-top: 25%;
+}
+
+
+.dailybox{
+    width: 80%;
+    text-align: center;
+}
+
+.piecanvas{
+    height: 100%;
+}
+
+#pieChart{
+    height: 90%;
 }

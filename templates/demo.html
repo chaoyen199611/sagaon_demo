@@ -27,7 +27,7 @@
         </div>
         <div class="monthbox">
             <div class="inaccurate-station">
-                <h4>Top 10 Inaccurate stations</h3>
+                <h3>Top 10 Inaccurate stations</h3>
                 <table>
                     <tr>
                         <th>No.</th>
@@ -239,14 +239,14 @@
         ],
         datasets: [{
           label: 'My First Dataset',
-          data: [300, 50, 100,50,10,20],
+          data: [0,0,0,0,0,0],
           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(132, 205, 86)',
-            'rgb(24, 75, 86)',
-            'rgb(11, 54, 86)'
+            'rgb(71, 210, 204)',
+            'rgb(65, 185, 212)',
+            'rgb(55, 150, 223)',
+            'rgb(42, 111, 234)',
+            'rgb(33, 84, 238)',
+            'rgb(22, 57, 249)'
           ],
           hoverOffset: 4
         }]
@@ -272,6 +272,9 @@
         type: 'line',
         data: dailyData,
         options: {
+            responsive:true,
+            maintainAspectRatio:true,
+            animation:false,
             plugins:{
                 legend:{
                     display:false,
@@ -289,6 +292,23 @@
     const pieconfig = {
         type: 'pie',
         data: pieData,
+        options: {
+            responsive:true,
+            maintainAspectRatio:false,
+            layout:{
+                padding:{
+                    top:20
+                }
+            },
+            plugins: {
+                legend: {
+                    align:'center',
+                    display: true,
+                    position:'bottom',
+                    labels: {}
+                }
+            }
+        }
       };
 
     Chart.defaults.color = "#ffffff";
@@ -446,7 +466,7 @@
 
 
     var i = 1;                  //  set your counter to 1
-
+    var faircount=0,raincount=0,pccount=0,mccount=0,cloudcount=0,stormcount=0;
     function addMinutes(time, minsToAdd) {
         function D(J){ return (J<10? '0':'') + J;};
         var piece = time.split(':');
@@ -554,7 +574,22 @@
                         curUnsafe++;
                         curUnsafe1++;
                         stationtotal[k]++;
+                        if(wa[i].type=='Fair')
+                            pieChart.data.datasets[0].data[0]++;
+                        else if(wa[i].type=='MostlyCloudy')
+                            pieChart.data.datasets[0].data[1]++;
+                        else if(wa[i].type=='PartlyCloudy')
+                            pieChart.data.datasets[0].data[2]++;
+                        else if(wa[i].type=='Cloudy')
+                            pieChart.data.datasets[0].data[3]++;
+                        else if(wa[i].type=='LightDrizzle'||wa[i].type=='LightRain'||wa[i].type=='Rain')
+                            pieChart.data.datasets[0].data[4]++;
+                        else
+                            pieChart.data.datasets[0].data[5]++;
+
+                        pieChart.update();
                     }
+                    
                     else if(accuracy(newtrips[k].true_start,newtrips[k].true_end,newtrips[k].pred_start,newtrips[k].pred_end)<0.06){
                         markers[k].setIcon(safe);
                         curSafe++;
