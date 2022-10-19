@@ -495,7 +495,7 @@
         stationtotal.push(0);
         mask.push(false);
     }
-
+    var weekday=2;
     function myLoop(){         //  create a loop function
     setTimeout(function() {   //  call a 3s setTimeout when the loop is called
         for(var k=0;k<100;k++){
@@ -511,8 +511,30 @@
                 stationtotal[k]=0;
             }
         }
-
-        document.getElementById("curdate").innerHTML=curDate;
+        var weekdaystring;
+        switch(weekday){
+            case 1:
+                weekdaystring="Mon";
+                break;
+            case 2:
+                weekdaystring="Tue";
+                break;
+            case 3:
+                weekdaystring="Wed";
+                break;
+            case 4:
+                weekdaystring="Thu";
+                break;
+            case 5:
+                weekdaystring="Fri";
+                break;
+            case 6:
+                weekdaystring="Sat";
+                break;
+            default:
+                weekdaystring="Sun";
+        }
+        document.getElementById("curdate").innerHTML=curDate+" "+weekdaystring;
         var newtrips=[];
         
         const unsafe = {
@@ -682,6 +704,9 @@
         if(!half){
             hourcount++; 
             if(hourcount>=24){
+                weekday++;
+                if(weekday==7)
+                    weekday=1;
                 for(var n=0;n<24;n++){
                     dailyChart.data.datasets[0].data.pop();
                     dailyChart.data.datasets[1].data.pop();
