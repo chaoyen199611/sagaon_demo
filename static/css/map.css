@@ -147,6 +147,10 @@ img{
     margin-top: 15%;
 }
 
+table{
+    margin-right: auto;
+    margin-left: auto;
+}
 
 .dailybox{
     width: 80%;
@@ -162,3 +166,4 @@ img{
 #pieChart{
     height: 90%;
 }
+
